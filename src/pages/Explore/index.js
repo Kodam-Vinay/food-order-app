@@ -28,9 +28,6 @@ const Explore = () => {
     cityName: "",
     data: [],
   });
-  useEffect(() => {
-    getData();
-  }, [geoLactions]);
 
   const onClickSearch = async () => {
     if (cityName === "") {
@@ -59,47 +56,12 @@ const Explore = () => {
     }
   };
 
-  const getData = async () => {
-    const { lat, lon } = geoLactions;
-    if (lat === "" && lon === "") {
-      setApiStatus((prev) => ({
-        ...prev,
-        status: constApiStatus.initial,
-      }));
-    } else {
-      try {
-        setApiStatus((prev) => ({
-          ...prev,
-          status: constApiStatus.inProgress,
-        }));
-        const apiUrl = `https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.385044&lng=78.486671&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`;
-        const response = await fetch(apiUrl);
-        if (response.ok === true) {
-          const data = await response.json();
-          setApiStatus((prev) => ({
-            ...prev,
-            data: data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
-              ?.restaurants,
-            cityName: cityName,
-            status: constApiStatus.success,
-          }));
-        } else {
-          setApiStatus((prev) => ({
-            ...prev,
-            status: constApiStatus.failure,
-            errorMsg: "Please Check Your City Name Once",
-          }));
-        }
-      } catch (error) {
-        setApiStatus((prev) => ({
-          ...prev,
-          status: constApiStatus.failure,
-          errorMsg:
-            "Something Got an Error Please Refresh The Page And Try Again",
-        }));
-      }
-    }
-  };
+  const getData = async () => {};
+
+  useEffect(() => {
+    getData();
+  }, [geoLactions]);
+
   const SuccessView = () => (
     <>
       {apiStaus?.data?.length > 0 ? (
