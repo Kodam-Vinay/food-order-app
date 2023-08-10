@@ -174,9 +174,6 @@ const Explore = () => {
               <ProgressBar
                 height="40"
                 width="40"
-                ariaLabel="progress-bar-loading"
-                wrapperStyle={{}}
-                wrapperClass="progress-bar-wrapper"
                 borderColor="#F4442E"
                 barColor="#51E5FF"
               />
